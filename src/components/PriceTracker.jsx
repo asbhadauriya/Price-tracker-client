@@ -44,16 +44,7 @@ const PriceTracker = () => {
     </div>
       <div className='select'>
       <p className='para-head'>Pick Stock :-    </p>
-      <select value={selectedStock} onChange={e => setSelectedStock(e.target.value)}>
-      {allStock?.map((d)=>{
-        return(
-          
-          <option value={d.symbol}>{d.symbol}</option>
-          )
-          
-        })}
-        {/* Add more stock options */}
-        </select>
+      
         </div><br/>
       {stockPrice !== null ? <p className='head'>Current Market Price:<b> ${stockPrice}</b></p> : <p className='head'>Loading...</p>}
     </div>
