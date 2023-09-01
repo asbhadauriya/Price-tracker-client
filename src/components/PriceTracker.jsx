@@ -1,7 +1,11 @@
+import { Chart as ChartJS,CategoryScale,LinearScale } from 'chart.js';
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Line } from "react-chartjs-2";
+ChartJS.register(CategoryScale,LinearScale)
 // import  ChartTrack  from './ChartTr';
+
+
 
 const PriceTracker = () => {
   const [selectedStock, setSelectedStock] = useState('AAPL');
@@ -71,7 +75,6 @@ const PriceTracker = () => {
 };
 
 export default PriceTracker;
-
 
 
 
