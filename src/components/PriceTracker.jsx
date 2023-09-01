@@ -1,8 +1,8 @@
-import { Chart as ChartJS,CategoryScale,LinearScale,PointElement } from 'chart.js';
+import { Chart as ChartJS,CategoryScale,LinearScale,PointElement, LineController, LineElement } from 'chart.js';
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Line } from "react-chartjs-2";
-ChartJS.register(CategoryScale,LinearScale,PointElement)
+ChartJS.register(CategoryScale,LinearScale,PointElement, LineController, LineElement)
 // import  ChartTrack  from './ChartTr';
 
 
