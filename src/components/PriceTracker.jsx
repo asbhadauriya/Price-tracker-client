@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { Chart } from 'chart.js';
+import React, { useState, useEffect, useRef } from 'react';
+
+import { Line } from "react-chartjs-2";
+// import  ChartTrack  from './ChartTr';
 
 const PriceTracker = () => {
   const [selectedStock, setSelectedStock] = useState('AAPL');
@@ -58,9 +62,81 @@ const PriceTracker = () => {
         <div  className='head'>
        <b> {selectedStock}</b>
         {stockPrice !== null ? <p>Current Market Price:<b> ${stockPrice}</b></p> : <p>Loading...</p>}
+        <div className='chart'>
+
+        <StockChart price={stockPrice} selectedStock={selectedStock}/>
+        </div>
         </div>
     </div>
   );
 };
 
 export default PriceTracker;
+
+
+
+
+const StockChart = ({price,selectedStock}) => {
+  const chartRef = useRef(null);
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: [],
+        fill: false,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  });
+useEffect(()=>{
+setChartData({  labels: [],
+  datasets: [
+    {
+      label: selectedStock,
+      data: [],
+      fill: false,
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+    },
+  ],
+})
+},[selectedStock])
+
+
+  // Simulate receiving data from the API every second
+  useEffect(() => {
+ 
+    const newData = {
+      x: new Date().toLocaleTimeString(),
+      y: price, // Replace with your actual API data
+    };
+
+    setChartData((prevData) => ({
+      labels: [...prevData.labels, newData.x],
+      datasets: [
+        {
+          ...prevData.datasets[0],
+          data: [...prevData.datasets[0].data, newData.y],
+        },
+      ],
+    }));
+
+
+  
+  }, [price]);
+  
+    return (
+      <div>
+        <Line data={chartData} options={{ responsive: true }} />
+      </div>
+    );
+  };
+  
+  
+
+
+
+
+
