@@ -55,7 +55,10 @@ const PriceTracker = () => {
         {/* Add more stock options */}
         </select>
         </div><br/>
-      {stockPrice !== null ? <p className='head'>Current Market Price:<b> ${stockPrice}</b></p> : <p className='head'>Loading...</p>}
+        <div  className='head'>
+       <b> {selectedStock}</b>
+        {stockPrice !== null ? <p>Current Market Price:<b> ${stockPrice}</b></p> : <p>Loading...</p>}
+        </div>
     </div>
   );
 };
