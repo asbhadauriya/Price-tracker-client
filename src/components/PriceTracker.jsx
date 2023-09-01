@@ -1,4 +1,3 @@
-import { Chart } from 'chart.js';
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Line } from "react-chartjs-2";
@@ -77,7 +76,6 @@ export default PriceTracker;
 
 
 const StockChart = ({price,selectedStock}) => {
-  const chartRef = useRef(null);
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
